@@ -40,21 +40,32 @@ console.log("hello...");
 //CallBack hell
 h1 = document.querySelector("h1");
 
-function changeColor(color, delay, nextcolorChange){
-    setInterval(()=>{
+function changeColor(color, delay){
+    return new Promise((resolve, reject)=>{
+        setInterval(()=>{
         h1.style.color = color;
-        if (nextcolorChange) nextcolorChange()
+        resolve("color changed");
     }, delay);
+    })
 }
 
-changeColor("red", 1000, ()=>{
-    changeColor("green", 1000, ()=>{
-        changeColor("blue", 1000, ()=>{
-            changeColor("yellow", 1000);
-        });
-    });
-
+changeColor("red", 1000)
+.then(()=>{
+    console.log("red color was completed");
+    return changeColor("orange", 1000);
+})
+.then(()=>{
+    console.log("orange color was completed");
+    return changeColor("green", 1000);
+})
+.then(()=>{
+    console.log("green color was completed");
+    return changeColor("yellow", 1000);
+})
+.then(()=>{
+    console.log("yellow was completed");
 });
+
 //Promises
 
 // function savetoDb(data, success, failure){
@@ -99,3 +110,4 @@ savetoDb("apna college")
 .catch(()=>{
     console.log("promise was rejected");
 });
+
