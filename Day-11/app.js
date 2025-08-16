@@ -53,4 +53,49 @@ changeColor("red", 1000, ()=>{
             changeColor("yellow", 1000);
         });
     });
+
+});
+//Promises
+
+// function savetoDb(data, success, failure){
+//     let internetSpeed = Math.floor(Math.random()*10) + 1;
+//     if(internetSpeed > 4){
+//         success();
+//     } else {
+//         failure();
+//     }
+// }
+
+// savetoDb("apna college", ()=>{
+//     console.log("your data was saved");
+//     savetoDb("hello world", ()=>{
+//         console.log("success2: data saved.")
+//     }, ()=>{
+//         console.log("failure2");
+//     })
+// },()=>{
+//     console.log("weak connection. data not saved.");
+// });
+
+function savetoDb(data){
+    return new Promise((resolve, reject)=>{
+        let internetSpeed = Math.floor(Math.random()*10) + 1;
+        if(internetSpeed > 4){
+        resolve("success: your data was saved.");
+    } else {
+        reject("failure: weak connection");
+    }
+    });
+}
+
+savetoDb("apna college")
+.then(()=>{
+    console.log("data1. promise was resolved");
+    return savetoDb("hello world");
+})
+.then(()=>{
+    console.log("data2 saved.");
+})
+.catch(()=>{
+    console.log("promise was rejected");
 });
