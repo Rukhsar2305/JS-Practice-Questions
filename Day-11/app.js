@@ -100,14 +100,18 @@ function savetoDb(data){
 }
 
 savetoDb("apna college")
-.then(()=>{
+.then((result)=>{
     console.log("data1. promise was resolved");
+    console.log("result of promise :", result);
     return savetoDb("hello world");
 })
-.then(()=>{
+.then((result)=>{
     console.log("data2 saved.");
+    console.log("result of promise:", result);
 })
-.catch(()=>{
+.catch((error)=>{
     console.log("promise was rejected");
+    console.log("error of promise:", error);
 });
+
 
