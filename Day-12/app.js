@@ -34,7 +34,8 @@ greet()
 });
 
 //json
-let jsonRes = '{"fact":"All cats need taurine in their diet to avoid blindness. Cats must also have fat in their diet as they are unable to produce it on their own.","length":140}';
+let jsonRes = '{"fact": "All cats need taurine in their diet to avoid blindness. Cats must also have fat in their diet as they are unable to produce it on their own.","length":140}';
 
 let validRes = JSON.parse(jsonRes);
+
 console.log(validRes.fact);
