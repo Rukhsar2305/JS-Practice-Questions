@@ -39,3 +39,27 @@ let jsonRes = '{"fact": "All cats need taurine in their diet to avoid blindness.
 let validRes = JSON.parse(jsonRes);
 
 console.log(validRes.fact);
+
+//Our first API request
+let url = "https://catfact.ninja/fact";
+
+fetch(url)
+.then((res)=>{
+    console.log(res); 
+    return res.json();
+})
+.then((data)=>{
+    console.log(data.fact);
+})
+.catch((err)=>{
+    console.log("ERROR -", err);
+})
+
+//using fetch with async-await
+let url2 = "https://catfact.ninja/fact";
+
+async function getFacts(){
+    let res = await fetch(url);
+    let data = await res.json();
+    console.log(data.fact);
+}
